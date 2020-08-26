@@ -37,13 +37,13 @@ namespace AStarVisualization
 
         private void Update()
         {
-            UpdateGrid();
+            if (cameraTransform.position != lastCameraPosition) UpdateGrid();
+
+            lastCameraPosition = cameraTransform.position;
         }
 
-        private void UpdateGrid()
+        public void UpdateGrid()
         {
-            if (cameraTransform.position == lastCameraPosition) return;
-
             UpdateVertices();
             UpdateTriangles();
 
@@ -53,6 +53,8 @@ namespace AStarVisualization
         private void UpdateVertices()
         {
             vertices.Clear();
+
+            screenMax = new Vector2(Screen.width, Screen.height);
 
             Vector2 gridMin = mainCamera.ScreenToWorldPoint(screenMin);
             Vector2 gridMax = mainCamera.ScreenToWorldPoint(screenMax);
