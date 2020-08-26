@@ -108,6 +108,12 @@ namespace AStarVisualization
         {
             mesh.Clear();
 
+            // Move all vertices back to render over other elements
+            for (int i = 0; i < vertices.Count; i++)
+            {
+                vertices[i] = new Vector3(vertices[i].x, vertices[i].y, -1);
+            }
+
             mesh.vertices = vertices.ToArray();
             mesh.triangles = triangles.ToArray();
         }

@@ -190,8 +190,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -126430597
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bca14e8172c9442dba283f5642f7a601, type: 3}
   m_Color: {r: 0, g: 0.5019608, b: 0.2509804, a: 1}
@@ -380,11 +380,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 273e6709e2d4244a9a984eae112a98f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pathNodePrefab: {fileID: 8839285137140722855, guid: 46ffe129409a24081b428bf049229ee8,
-    type: 3}
   openNodePrefab: {fileID: 7350536374452794342, guid: e787885b34fbe441daf44522b0383d66,
     type: 3}
   closedNodePrefab: {fileID: 1261523144096503947, guid: 43f3f0c9262b54290a2c584437191ca3,
+    type: 3}
+  pathNodePrefab: {fileID: 8839285137140722855, guid: 46ffe129409a24081b428bf049229ee8,
     type: 3}
   obstacleRenderer: {fileID: 1225544614}
 --- !u!1 &255791368
@@ -716,8 +716,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -126430597
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bca14e8172c9442dba283f5642f7a601, type: 3}
   m_Color: {r: 0.5019608, g: 0, b: 0, a: 1}
@@ -1047,6 +1047,7 @@ GameObject:
   - component: {fileID: 1225544614}
   - component: {fileID: 1225544616}
   - component: {fileID: 1225544615}
+  - component: {fileID: 1225544617}
   m_Layer: 0
   m_Name: ObstacleRenderer
   m_TagString: Untagged
@@ -1129,6 +1130,17 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1225544612}
   m_Mesh: {fileID: 0}
+--- !u!210 &1225544617
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1225544612}
+  m_Enabled: 1
+  m_SortingLayerID: -126430597
+  m_SortingLayer: 1
+  m_SortingOrder: 0
 --- !u!1 &1353568875
 GameObject:
   m_ObjectHideFlags: 0
