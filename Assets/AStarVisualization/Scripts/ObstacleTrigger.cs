@@ -1,12 +1,14 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 namespace AStarVisualization
 {
+    
+
     public class ObstacleTrigger : MonoBehaviour
     {
         [Header("References")]
         [SerializeField] private ObstacleRenderer obstacleRenderer = null;
-        [SerializeField] private Camera mainCamera = null;
 
         private void Update()
         {
@@ -17,19 +19,30 @@ namespace AStarVisualization
         {
             if (Input.GetMouseButtonDown(0))
             {
-                obstacleRenderer.TriggerObstacle(MousePosition());
+                obstacleRenderer.TriggerObstacle(Mouse.Position());
+
+                StartCoroutine(ContinueTriggerObstacle());
             }
         }
 
-        // Returns the bottom left corner of the tile currently at the mouse position
-        private Vector2Int MousePosition()
+        private IEnumerator ContinueTriggerObstacle()
         {
-            Vector3 mousePos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-            
-            int x = Mathf.FloorToInt(mousePos.x);
-            int y = Mathf.FloorToInt(mousePos.y);
-            
-            return new Vector2Int(x, y);
+            Vector2Int lastMousePosition = Mouse.Position();
+
+            // While button pressed, continue to trigger obstacles
+            while (Input.GetMouseButton(0))
+            {
+                Vector2Int mousePosition = Mouse.Position();
+
+                if (mousePosition != lastMousePosition)
+                {
+                    obstacleRenderer.TriggerObstacle(mousePosition);
+                }
+
+                lastMousePosition = mousePosition;
+
+                yield return null;
+            }
         }
     }
 }
