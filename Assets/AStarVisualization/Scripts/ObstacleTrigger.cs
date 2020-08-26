@@ -17,7 +17,7 @@ namespace AStarVisualization
 
         private void TriggerObstacle()
         {
-            if (Input.GetMouseButtonDown(0) && obstacleRenderer.IsEmpty(Mouse.Position(), true) && !Mouse.IsOverUI())
+            if (Input.GetMouseButtonDown(0) && obstacleRenderer.IsEmptyNodes(Mouse.Position()) && !Mouse.IsOverUI())
             {
                 bool obstacleCreated = obstacleRenderer.TriggerObstacle(Mouse.Position());
 
@@ -49,7 +49,7 @@ namespace AStarVisualization
         {
             if (createObstacle)
             {
-                if (obstacleRenderer.IsEmpty(mousePosition, false))
+                if (obstacleRenderer.IsEmpty(mousePosition))
                 {
                     obstacleRenderer.CreateObstacle(mousePosition);
                 }

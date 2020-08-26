@@ -26,7 +26,7 @@ namespace AStarVisualization
             {
                 mousePosition = Mouse.Position();
 
-                if (mousePosition != lastMousePosition && obstacleRenderer.IsEmpty(mousePosition, false))
+                if (mousePosition != lastMousePosition && obstacleRenderer.IsEmpty(mousePosition))
                 {
                     MoveTo(mousePosition);
                 }

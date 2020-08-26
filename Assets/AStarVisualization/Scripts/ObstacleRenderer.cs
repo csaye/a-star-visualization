@@ -112,10 +112,18 @@ namespace AStarVisualization
             mesh.triangles = triangles.ToArray();
         }
 
-        public bool IsEmpty(Vector2Int position, bool ignoreObstacles)
+        public bool IsEmpty(Vector2Int position)
         {
-            if (!ignoreObstacles && obstacles.Contains(position)) return false;
+            return IsEmptyObstacles(position) && IsEmptyNodes(position);
+        }
 
+        public bool IsEmptyObstacles(Vector2Int position)
+        {
+            return !obstacles.Contains(position);
+        }
+
+        public bool IsEmptyNodes(Vector2Int position)
+        {
             if (startingNodeTransform.position == (Vector3Int)position) return false;
             if (endingNodeTransform.position == (Vector3Int)position) return false;
 
