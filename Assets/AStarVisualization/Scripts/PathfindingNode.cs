@@ -2,7 +2,7 @@
 
 namespace AStarVisualization
 {
-    public class PathfindingNode : MonoBehaviour
+    public class PathfindingNode
     {
         public Vector2Int position {get;}
         public int steps {get; set;}

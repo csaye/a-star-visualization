@@ -5,6 +5,10 @@ namespace AStarVisualization
 {
     public class Pathfinding : MonoBehaviour
     {
+        [Header("References")]
+        [SerializeField] private GameObject pathNodePrefab = null;
+        [SerializeField] private ObstacleRenderer obstacleRenderer = null;
+
         // Steps which a path can take
         private List<Vector2Int> moveDirections = new List<Vector2Int>
         {
@@ -18,7 +22,23 @@ namespace AStarVisualization
         private const int maxIterations = 1000;
         private int iterations = 0;
 
-        private ObstacleRenderer obstacleRenderer = FindObjectOfType<ObstacleRenderer>();
+        public void DrawPath(Vector2Int start, Vector2Int end)
+        {
+            // Remove all children of current path
+            foreach (Transform child in transform)
+            {
+                Destroy(child.gameObject);
+            }
+
+            // Create all new children from given path
+            foreach (Vector2Int position in Path(start, end))
+            {
+                // Skip start and end positions
+                if (position == start || position == end) continue;
+
+                Instantiate(pathNodePrefab, (Vector3Int)position, Quaternion.identity, transform);
+            }
+        }
 
         // Returns shortest path from start position to end position
         private List<Vector2Int> Path(Vector2Int start, Vector2Int end)
@@ -36,10 +56,10 @@ namespace AStarVisualization
 
             while (current.position != end)
             {
-                // If maximum iterations surpassed and no path found, return null
+                // If maximum iterations surpassed and no path found, return empty list
                 if (iterations >= maxIterations)
                 {
-                    return null;
+                    return new List<Vector2Int>();
                 }
 
                 iterations++;
@@ -78,7 +98,7 @@ namespace AStarVisualization
                     PathfindingNode closedMove = closedNodes.Find(node => node.position == move);
 
                     // If node closed or obstructed, skip node
-                    if (closedMove != null || obstacleRenderer.IsEmptyObstacles(move))
+                    if (closedMove != null || !obstacleRenderer.IsEmptyObstacles(move))
                     {
                         continue;
                     }
