@@ -7,6 +7,8 @@ namespace AStarVisualization
     {
         [Header("References")]
         [SerializeField] private GameObject pathNodePrefab = null;
+        [SerializeField] private GameObject openNodePrefab = null;
+        [SerializeField] private GameObject closedNodePrefab = null;
         [SerializeField] private ObstacleRenderer obstacleRenderer = null;
 
         // Steps which a path can take
@@ -108,7 +110,7 @@ namespace AStarVisualization
                         openMove.steps = lastSteps + 1;
                     }
                     // If valid area, create new node and increment steps by one
-                    else
+                    else if (openMove == null && closedMove == null)
                     {
                         openNodes.Add(new PathfindingNode(move, lastSteps + 1, Distance(move, end)));
                     }
@@ -144,6 +146,24 @@ namespace AStarVisualization
                 // Set current node and add to path
                 current = bestMove;
                 path.Add(current.position);
+            }
+
+            // Visualize open nodes
+            foreach (PathfindingNode node in openNodes)
+            {
+                // Skip start and end positions
+                if (node.position == start || node.position == end) continue;
+
+                Instantiate(openNodePrefab, (Vector3Int)node.position, Quaternion.identity, transform);
+            }
+
+            // Visualize closed nodes
+            foreach (PathfindingNode node in closedNodes)
+            {
+                // Skip start, end, and path positions
+                if (node.position == start || node.position == end || path.Contains(node.position)) continue;
+
+                Instantiate(closedNodePrefab, (Vector3Int)node.position, Quaternion.identity, transform);
             }
 
             path.Reverse();
