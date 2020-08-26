@@ -27,11 +27,15 @@ namespace AStarVisualization
         private const int maxIterations = 1000;
         private int iterations = 0;
 
-        private const float stepDelay = 0.25f;
+        private const float stepDelay = 0.2f;
+
+        private Coroutine drawPathSteps;
 
         public void DrawPath(Vector2Int start, Vector2Int end)
         {
-            StartCoroutine(DrawPathSteps(start, end));
+            if (drawPathSteps != null) StopCoroutine(drawPathSteps);
+
+            drawPathSteps = StartCoroutine(DrawPathSteps(start, end));
         }
 
         private IEnumerator DrawPathSteps(Vector2Int start, Vector2Int end)
