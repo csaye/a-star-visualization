@@ -5,6 +5,9 @@ namespace AStarVisualization
 {
     public class DraggableNode : MonoBehaviour
     {
+        [Header("References")]
+        [SerializeField] private ObstacleRenderer obstacleRenderer = null;
+
         private void OnMouseOver()
         {
             if (Input.GetMouseButtonDown(0))
@@ -15,16 +18,28 @@ namespace AStarVisualization
 
         private IEnumerator Drag()
         {
-            // lastMousePosition = MousePosition();
+            Vector2Int mousePosition;
+            Vector2Int lastMousePosition = Mouse.Position();
 
-            // While left click held down
+            // While button pressed, continue to drag node
             while (Input.GetMouseButton(0))
             {
-                // mousePosition = MousePosition();
+                mousePosition = Mouse.Position();
 
-                // if ()
+                if (mousePosition != lastMousePosition && obstacleRenderer.IsEmpty(mousePosition, false))
+                {
+                    MoveTo(mousePosition);
+                }
+
+                lastMousePosition = mousePosition;
+
                 yield return null;
             }
+        }
+
+        private void MoveTo(Vector2Int position)
+        {
+            transform.position = (Vector3Int)position;
         }
     }
 }

@@ -6,6 +6,10 @@ namespace AStarVisualization
     [RequireComponent(typeof(MeshFilter))]
     public class ObstacleRenderer : MonoBehaviour
     {
+        [Header("References")]
+        [SerializeField] private Transform startingNodeTransform = null;
+        [SerializeField] private Transform endingNodeTransform = null;
+
         public List<Vector2Int> obstacles {get; private set;} = new List<Vector2Int>();
 
         private List<Vector3> vertices = new List<Vector3>();
@@ -19,20 +23,25 @@ namespace AStarVisualization
             mesh = meshFilter.mesh;
         }
 
-        public void TriggerObstacle(Vector2Int position)
+        // Returns true if obstacle created and false if obstacle removed
+        public bool TriggerObstacle(Vector2Int position)
         {
             if (obstacles.Contains(position))
             {
                 RemoveObstacle(position);
+                return false;
             }
             else
             {
                 CreateObstacle(position);
+                return true;
             }
         }
 
-        private void RemoveObstacle(Vector2Int position)
+        public void RemoveObstacle(Vector2Int position)
         {
+            if (!obstacles.Contains(position)) return;
+
             RemoveVertices(position);
             UpdateMesh();
 
@@ -60,8 +69,10 @@ namespace AStarVisualization
             }
         }
 
-        private void CreateObstacle(Vector2Int position)
+        public void CreateObstacle(Vector2Int position)
         {
+            if (obstacles.Contains(position)) return;
+
             obstacles.Add(position);
 
             CreateVertices(position);
@@ -99,6 +110,16 @@ namespace AStarVisualization
 
             mesh.vertices = vertices.ToArray();
             mesh.triangles = triangles.ToArray();
+        }
+
+        public bool IsEmpty(Vector2Int position, bool ignoreObstacles)
+        {
+            if (!ignoreObstacles && obstacles.Contains(position)) return false;
+
+            if (startingNodeTransform.position == (Vector3Int)position) return false;
+            if (endingNodeTransform.position == (Vector3Int)position) return false;
+
+            return true;
         }
     }
 }

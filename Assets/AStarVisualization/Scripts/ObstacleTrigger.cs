@@ -17,15 +17,15 @@ namespace AStarVisualization
 
         private void TriggerObstacle()
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && obstacleRenderer.IsEmpty(Mouse.Position(), true) && !Mouse.IsOverUI())
             {
-                obstacleRenderer.TriggerObstacle(Mouse.Position());
+                bool obstacleCreated = obstacleRenderer.TriggerObstacle(Mouse.Position());
 
-                StartCoroutine(ContinueTriggerObstacle());
+                StartCoroutine(ContinueTriggerObstacle(obstacleCreated));
             }
         }
 
-        private IEnumerator ContinueTriggerObstacle()
+        private IEnumerator ContinueTriggerObstacle(bool createObstacle)
         {
             Vector2Int lastMousePosition = Mouse.Position();
 
@@ -36,12 +36,27 @@ namespace AStarVisualization
 
                 if (mousePosition != lastMousePosition)
                 {
-                    obstacleRenderer.TriggerObstacle(mousePosition);
+                    TriggerObstacleSpecified(mousePosition, createObstacle);
                 }
 
                 lastMousePosition = mousePosition;
 
                 yield return null;
+            }
+        }
+
+        private void TriggerObstacleSpecified(Vector2Int mousePosition, bool createObstacle)
+        {
+            if (createObstacle)
+            {
+                if (obstacleRenderer.IsEmpty(mousePosition, false))
+                {
+                    obstacleRenderer.CreateObstacle(mousePosition);
+                }
+            }
+            else
+            {
+                obstacleRenderer.RemoveObstacle(mousePosition);
             }
         }
     }

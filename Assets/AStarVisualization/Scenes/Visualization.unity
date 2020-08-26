@@ -130,8 +130,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 31773494}
-  - component: {fileID: 31773495}
   - component: {fileID: 31773496}
+  - component: {fileID: 31773495}
+  - component: {fileID: 31773497}
   m_Layer: 0
   m_Name: StartingNode
   m_TagString: Untagged
@@ -147,7 +148,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 31773493}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -3, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 695787476}
@@ -192,15 +193,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: bca14e8172c9442dba283f5642f7a601, type: 3}
+  m_Color: {r: 0, g: 0.5019608, b: 0.2509804, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.01, y: 0.01}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &31773496
@@ -215,6 +216,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 802b951645f294a3d855c639aa0bba89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  obstacleRenderer: {fileID: 1225544614}
+--- !u!65 &31773497
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 31773493}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 0.2}
+  m_Center: {x: 0.5, y: 0.5, z: 0}
 --- !u!1 &101728209
 GameObject:
   m_ObjectHideFlags: 0
@@ -590,8 +605,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 667765755}
-  - component: {fileID: 667765756}
   - component: {fileID: 667765757}
+  - component: {fileID: 667765756}
+  - component: {fileID: 667765758}
   m_Layer: 0
   m_Name: EndingNode
   m_TagString: Untagged
@@ -607,7 +623,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 667765754}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 2, y: -2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 695787476}
@@ -652,15 +668,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: bca14e8172c9442dba283f5642f7a601, type: 3}
+  m_Color: {r: 0.5019608, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.01, y: 0.01}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &667765757
@@ -675,6 +691,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 802b951645f294a3d855c639aa0bba89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  obstacleRenderer: {fileID: 1225544614}
+--- !u!65 &667765758
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 667765754}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 0.2}
+  m_Center: {x: 0.5, y: 0.5, z: 0}
 --- !u!1 &695787475
 GameObject:
   m_ObjectHideFlags: 0
@@ -854,6 +884,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 287b3320375ac4d029592db670f1db94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startingNodeTransform: {fileID: 31773494}
+  endingNodeTransform: {fileID: 667765755}
 --- !u!23 &1225544615
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -945,7 +977,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obstacleRenderer: {fileID: 1225544614}
-  mainCamera: {fileID: 519420031}
 --- !u!1 &1967701739
 GameObject:
   m_ObjectHideFlags: 0
