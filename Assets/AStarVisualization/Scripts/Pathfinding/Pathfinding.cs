@@ -12,8 +12,10 @@ namespace AStarVisualization
         [SerializeField] private GameObject pathNodePrefab = null;
         [SerializeField] private ObstacleRenderer obstacleRenderer = null;
 
+        public bool drawing {get; private set;} = false;
+
         // Steps which a path can take
-        private List<Vector2Int> moveDirections = new List<Vector2Int>
+        public List<Vector2Int> moveDirections {get; set;} = new List<Vector2Int>
         {
             Vector2Int.up,
             Vector2Int.left,
@@ -36,6 +38,8 @@ namespace AStarVisualization
 
         public void DrawPath(Vector2Int start, Vector2Int end)
         {
+            drawing = true;
+
             if (drawPathSteps != null) StopCoroutine(drawPathSteps);
 
             drawPathSteps = StartCoroutine(DrawPathSteps(start, end));
@@ -115,6 +119,8 @@ namespace AStarVisualization
                 yield return new WaitForSeconds(pathDelay);
                 CreateVisualNode(pathNodePrefab, position);
             }
+
+            drawing = false;
         }
 
         private void UpdateAdjacentNodes(PathfindingNode current, List<PathfindingNode> openNodes, List<PathfindingNode> closedNodes, Vector2Int end)
