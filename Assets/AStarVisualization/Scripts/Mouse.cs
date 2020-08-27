@@ -6,7 +6,15 @@ namespace AStarVisualization
 {
     public class Mouse : MonoBehaviour
     {
-        private static Camera mainCamera = Camera.main;
+        [Header("References")]
+        [SerializeField] private Camera _mainCamera = null;
+
+        private static Camera mainCamera;
+
+        private void Start()
+        {
+            mainCamera = _mainCamera;
+        }
 
         // Returns the bottom left corner of the tile currently at the mouse position
         public static Vector2Int Position()
