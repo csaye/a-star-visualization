@@ -1,18 +1,27 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class KeybindsIndicator : MonoBehaviour
+namespace AStarVisualization
 {
-    // Start is called before the first frame update
-    void Start()
+    [RequireComponent(typeof(Animator))]
+    public class KeybindsIndicator : MonoBehaviour
     {
-        
-    }
+        private static bool triggered = false;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        private Animator animator;
+
+        private void Start()
+        {
+            if (triggered)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                triggered = true;
+                
+                animator = GetComponent<Animator>();
+                animator.SetTrigger("Show");
+            }
+        }
     }
 }

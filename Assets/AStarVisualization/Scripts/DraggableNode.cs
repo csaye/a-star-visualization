@@ -7,10 +7,11 @@ namespace AStarVisualization
     {
         [Header("References")]
         [SerializeField] private ObstacleRenderer obstacleRenderer = null;
+        [SerializeField] private Pathfinding pathfinding = null;
 
         private void OnMouseOver()
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && !pathfinding.drawing)
             {
                 StartCoroutine(Drag());
             }

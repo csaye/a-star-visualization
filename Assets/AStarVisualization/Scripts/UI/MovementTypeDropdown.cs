@@ -42,11 +42,28 @@ namespace AStarVisualization
             new Vector2Int(2, -1)
         };
 
+        private List<Vector2Int> leapfrog = new List<Vector2Int>();
+
+        private const int maxLeapfrogLeap = 8;
+
         private TMP_Dropdown dropdown;
 
         private void Start()
         {
             dropdown = GetComponent<TMP_Dropdown>();
+
+            InitializeLeapfrog();
+        }
+
+        private void InitializeLeapfrog()
+        {
+            for (int leap = 1; leap <= maxLeapfrogLeap; leap++)
+            {
+                leapfrog.Add(new Vector2Int(0, leap));
+                leapfrog.Add(new Vector2Int(0, -leap));
+                leapfrog.Add(new Vector2Int(leap, 0));
+                leapfrog.Add(new Vector2Int(-leap, 0));
+            }
         }
 
         private void Update()
@@ -66,6 +83,9 @@ namespace AStarVisualization
                     break;
                 case 2:
                     pathfinding.moveDirections = knight;
+                    break;
+                case 3:
+                    pathfinding.moveDirections = leapfrog;
                     break;
             }
         }

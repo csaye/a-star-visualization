@@ -3,12 +3,11 @@ using UnityEngine;
 
 namespace AStarVisualization
 {
-    
-
     public class ObstacleTrigger : MonoBehaviour
     {
         [Header("References")]
         [SerializeField] private ObstacleRenderer obstacleRenderer = null;
+        [SerializeField] private Pathfinding pathfinding = null;
 
         private void Update()
         {
@@ -17,7 +16,8 @@ namespace AStarVisualization
 
         private void TriggerObstacle()
         {
-            if (Input.GetMouseButtonDown(0) && obstacleRenderer.IsEmptyNodes(Mouse.Position()) && !Mouse.IsOverUI())
+            // If mouse button pressed, not currently drawing, area is empty, and mouse is not over UI
+            if (Input.GetMouseButtonDown(0) && !pathfinding.drawing && obstacleRenderer.IsEmptyNodes(Mouse.Position()) && !Mouse.IsOverUI())
             {
                 bool obstacleCreated = obstacleRenderer.TriggerObstacle(Mouse.Position());
 
