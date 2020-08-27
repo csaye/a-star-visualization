@@ -23,6 +23,8 @@ namespace AStarVisualization
         private Transform cameraTransform = null;
 
         private Mesh mesh;
+
+        private bool active = true;
         
         private void Start()
         {
@@ -37,13 +39,32 @@ namespace AStarVisualization
 
         private void Update()
         {
-            if (cameraTransform.position != lastCameraPosition) UpdateGrid();
+            if (active && cameraTransform.position != lastCameraPosition) UpdateGrid();
 
             lastCameraPosition = cameraTransform.position;
         }
 
+        public void ToggleGridActive()
+        {
+            active = !active;
+
+            if (!active)
+            {
+                vertices.Clear();
+                triangles.Clear();
+
+                UpdateMesh();
+            }
+            else
+            {
+                UpdateGrid();
+            }
+        }
+
         public void UpdateGrid()
         {
+            if (!active) return;
+
             UpdateVertices();
             UpdateTriangles();
 
