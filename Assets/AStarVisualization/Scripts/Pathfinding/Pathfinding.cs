@@ -27,7 +27,10 @@ namespace AStarVisualization
         private const int maxIterations = 1000;
         private int iterations = 0;
 
-        private const float stepDelay = 0.2f;
+        private const float stepDelayDefault = 0.2f;
+        private const float minStepDelay = 0.02f;
+
+        private const float speedUpFactor = 0.975f;
 
         private Coroutine drawPathSteps;
 
@@ -55,9 +58,13 @@ namespace AStarVisualization
 
             iterations = 0;
 
+            float stepDelay = stepDelayDefault;
+
             while (current.position != end)
             {
                 yield return new WaitForSeconds(stepDelay);
+                
+                if (stepDelay > minStepDelay) stepDelay *= speedUpFactor;
 
                 // If maximum iterations surpassed and no path found, return empty list
                 if (iterations >= maxIterations)
@@ -92,13 +99,22 @@ namespace AStarVisualization
 
             GenerateFinalPath(closedNodes, path, start);
 
-            foreach (Vector2Int position in path)
+            float pathDelay;
+
+            if (stepDelay > stepDelayDefault / 2)
             {
-                yield return new WaitForSeconds(stepDelay / 2);
-                CreateVisualNode(pathNodePrefab, position);
+                pathDelay = stepDelayDefault / 2;
+            }
+            else
+            {
+                pathDelay = stepDelayDefault / 4;
             }
 
-            path.Reverse();
+            foreach (Vector2Int position in path)
+            {
+                yield return new WaitForSeconds(pathDelay);
+                CreateVisualNode(pathNodePrefab, position);
+            }
         }
 
         private void UpdateAdjacentNodes(PathfindingNode current, List<PathfindingNode> openNodes, List<PathfindingNode> closedNodes, Vector2Int end)
