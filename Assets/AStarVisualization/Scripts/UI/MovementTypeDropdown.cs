@@ -18,7 +18,7 @@ namespace AStarVisualization
             Vector2Int.down
         };
 
-        private List<Vector2Int> diagonals = new List<Vector2Int>()
+        private List<Vector2Int> diagonal = new List<Vector2Int>()
         {
             Vector2Int.up,
             Vector2Int.left,
@@ -79,7 +79,7 @@ namespace AStarVisualization
                     pathfinding.moveDirections = normal;
                     break;
                 case 1:
-                    pathfinding.moveDirections = diagonals;
+                    pathfinding.moveDirections = diagonal;
                     break;
                 case 2:
                     pathfinding.moveDirections = knight;

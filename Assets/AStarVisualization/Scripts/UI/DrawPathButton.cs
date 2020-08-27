@@ -18,10 +18,22 @@ namespace AStarVisualization
         private Image image;
         private Button button;
 
+        private bool lastDrawState;
+
         private void Start()
         {
             image = GetComponent<Image>();
             button = GetComponent<Button>();
+        }
+
+        private void Update()
+        {
+            if (lastDrawState != pathfinding.drawing && !pathfinding.drawing)
+            {
+                StartButtonSprite();
+            }
+
+            lastDrawState = pathfinding.drawing;
         }
 
         public void DrawPath()
