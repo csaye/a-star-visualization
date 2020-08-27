@@ -45,6 +45,13 @@ namespace AStarVisualization
             drawPathSteps = StartCoroutine(DrawPathSteps(start, end));
         }
 
+        public void CancelDrawPath()
+        {
+            if (drawPathSteps != null) StopCoroutine(drawPathSteps);
+            ClearAllChildren();
+            drawing = false;
+        }
+
         private IEnumerator DrawPathSteps(Vector2Int start, Vector2Int end)
         {
             ClearAllChildren();

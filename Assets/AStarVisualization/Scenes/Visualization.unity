@@ -734,8 +734,8 @@ MonoBehaviour:
     m_HighlightedSprite: {fileID: 21300000, guid: af0eebdfefa844f92a6ecd7490bfd1aa,
       type: 3}
     m_PressedSprite: {fileID: 21300000, guid: af0eebdfefa844f92a6ecd7490bfd1aa, type: 3}
-    m_SelectedSprite: {fileID: 21300000, guid: 2adebf460bb1a4fc599b499442b3bf9d, type: 3}
-    m_DisabledSprite: {fileID: 21300000, guid: 2adebf460bb1a4fc599b499442b3bf9d, type: 3}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
@@ -1189,8 +1189,8 @@ MonoBehaviour:
     m_HighlightedSprite: {fileID: 21300000, guid: 812d1495ca1864f6e97a2dfa00f0e2e1,
       type: 3}
     m_PressedSprite: {fileID: 21300000, guid: 812d1495ca1864f6e97a2dfa00f0e2e1, type: 3}
-    m_SelectedSprite: {fileID: 21300000, guid: b5de417d7fdc0436f9c96ed043e2e120, type: 3}
-    m_DisabledSprite: {fileID: 21300000, guid: b5de417d7fdc0436f9c96ed043e2e120, type: 3}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
@@ -1587,8 +1587,8 @@ MonoBehaviour:
     m_HighlightedSprite: {fileID: 21300000, guid: 1c8a461be22324dea9ac3bc4ede2999a,
       type: 3}
     m_PressedSprite: {fileID: 21300000, guid: 1c8a461be22324dea9ac3bc4ede2999a, type: 3}
-    m_SelectedSprite: {fileID: 21300000, guid: f494f7111b0f548208333dda0203c52f, type: 3}
-    m_DisabledSprite: {fileID: 21300000, guid: f494f7111b0f548208333dda0203c52f, type: 3}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
@@ -1663,6 +1663,12 @@ MonoBehaviour:
   pathfinding: {fileID: 233279598}
   startingNodeTransform: {fileID: 31773494}
   endingNodeTransform: {fileID: 667765755}
+  startButton: {fileID: 21300000, guid: f494f7111b0f548208333dda0203c52f, type: 3}
+  startButtonHighlight: {fileID: 21300000, guid: 1c8a461be22324dea9ac3bc4ede2999a,
+    type: 3}
+  pauseButton: {fileID: 21300000, guid: c2cef475daa2f42bb9b3bebf209785e9, type: 3}
+  pauseButtonHighlight: {fileID: 21300000, guid: 14dca3143b73b42cd8d4fe83a066e7d1,
+    type: 3}
 --- !u!1 &1012020414
 GameObject:
   m_ObjectHideFlags: 0
@@ -2296,8 +2302,8 @@ MonoBehaviour:
     m_HighlightedSprite: {fileID: 21300000, guid: a57d455923f8e4190a9a039d3db1b20e,
       type: 3}
     m_PressedSprite: {fileID: 21300000, guid: a57d455923f8e4190a9a039d3db1b20e, type: 3}
-    m_SelectedSprite: {fileID: 21300000, guid: 29a29edc5bf854b46b34f523b81a9e2c, type: 3}
-    m_DisabledSprite: {fileID: 21300000, guid: 29a29edc5bf854b46b34f523b81a9e2c, type: 3}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
